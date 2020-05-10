@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+// import logo from './logo.svg';
+// import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// export function Form() {
+//   return <h1>Hello</h1>;
+// }
+
+export class Form extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: "", textValue: "Please leave your feedback here." };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleTextChange = this.handleTextChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({ value: e.target.value });
+  }
+
+  handleTextChange(e) {
+    this.setState({ textValue: e.target.value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    alert(this.state.value);
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>Name:</label>
+        <input
+          type="text"
+          value={this.state.value}
+          onChange={this.handleChange}
+        />
+        <textarea
+          value={this.state.textValue}
+          onChange={this.handleTextChange}
+        />
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
 }
-
-export default App;
